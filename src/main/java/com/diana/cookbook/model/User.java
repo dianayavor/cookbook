@@ -11,10 +11,10 @@ import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "users")
-public class User extends AbstractIdentifiable {
+public class User implements AbstractIdentifiable {
 
 	@Id
-	@NotNull()
+	@NotNull
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
@@ -24,11 +24,9 @@ public class User extends AbstractIdentifiable {
 	@Column(name = "last_name")
 	private String lastName;
 
-	@Column
+	@Column(name = "email")
 	private String email;
 	
-
-
 	public Long getId() {
 		return id;
 	}

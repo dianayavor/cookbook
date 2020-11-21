@@ -33,8 +33,8 @@ public class UserService implements CrudService<User> {
 	}
 
 	@Override
-	public User save(User entity) {
-		return userRepository.save(entity);
+	public User save(User user) {
+		return userRepository.save(user);
 	}
 
 	@Override
@@ -43,8 +43,8 @@ public class UserService implements CrudService<User> {
 	}
 
 	@Override
-	public void deleteByEntity(User entity) {
-		userRepository.delete(entity);
+	public void deleteByEntity(User user) {
+		userRepository.delete(user);
 	}
 
 }
