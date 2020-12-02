@@ -12,8 +12,15 @@ import javax.persistence.Table;
 
 import com.sun.istack.NotNull;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
 @Table(name = "menu")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Menu implements AbstractIdentifiable {
 	
 	@Id
@@ -25,61 +32,5 @@ public class Menu implements AbstractIdentifiable {
 	@ManyToMany
 	@JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
 	private List<Meal> meals;
-	
-	public Menu() {}
-
-	public Menu(Long id, List<Meal> meals) {
-		super();
-		this.id = id;
-		this.meals = meals;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public List<Meal> getMeals() {
-		return meals;
-	}
-
-	public void setMeals(List<Meal> meals) {
-		this.meals = meals;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((meals == null) ? 0 : meals.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Menu other = (Menu) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (meals == null) {
-			if (other.meals != null)
-				return false;
-		} else if (!meals.equals(other.meals))
-			return false;
-		return true;
-	}
-	
 	
 }

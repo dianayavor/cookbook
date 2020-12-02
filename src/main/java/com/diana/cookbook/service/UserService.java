@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.diana.cookbook.model.User;
 import com.diana.cookbook.repository.UserRepository;
@@ -21,11 +22,13 @@ public class UserService implements CrudService<User> {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public User findById(Long id) {
 		return userRepository.findById(id).get();
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<User> getAll() {
 		List<User> users = new ArrayList<>();
 		userRepository.findAll().forEach(users::add);

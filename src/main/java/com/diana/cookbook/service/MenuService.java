@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.diana.cookbook.model.Menu;
 import com.diana.cookbook.repository.MenuRepository;
@@ -21,11 +22,13 @@ public class MenuService implements CrudService<Menu>{
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Menu findById(Long id) {
 		return menuRepository.findById(id).get();
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<Menu> getAll() {
 		List<Menu> menus = new ArrayList<Menu>();
 		menuRepository.findAll().forEach(menus::add);

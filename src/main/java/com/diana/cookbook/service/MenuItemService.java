@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.core.support.DefaultCrudMethods;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.diana.cookbook.model.MenuItem;
 import com.diana.cookbook.repository.MenuItemRepository;
@@ -17,16 +17,17 @@ public class MenuItemService implements CrudService<MenuItem>{
 	
 	@Autowired
 	public MenuItemService(MenuItemRepository menuItemRepository) {
-		super();
 		this.menuItemRepository = menuItemRepository;
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public MenuItem findById(Long id) {
 		return menuItemRepository.findById(id).get();
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<MenuItem> getAll() {
 		List<MenuItem> menuItems = new ArrayList<>();
 		menuItemRepository.findAll().forEach(menuItems::add);
